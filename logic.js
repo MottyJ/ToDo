@@ -15,11 +15,18 @@ class App extends React.Component {
 class SideMenu extends React.Component {
     constructor(props) {
         super(props)
+        this.delete = this.delete.bind(this)
+    }
+    delete(e){
+        console.log("hello")
     }
     render() {
         return (
             <div className="side-menu">
-
+                <h1 className="red">do</h1>
+                <h1><span className="red">-</span><span className="green">-</span></h1>
+                <h1 className="green">ne</h1>
+                <div className="trash" onDragOver={(e)=>this.onDragOver(e, this.delete(e))}>Trash</div>
             </div>
         );
     }
@@ -50,17 +57,17 @@ class Main extends React.Component {
         }
     }
     done(e) {
-        console.log(e.target.textContent)
+        console.log(e.target.id)
         this.state.listOfDone.push(e.target.textContent)
         this.setState({
-            listItems: this.state.listOfItems.splice(e.target.value)
+            listItems: this.state.listOfItems.splice(e.target.id, 1)
         })
         
     }
     render() {
         console.log(this.state.listOfItems)
-        var listItems = this.state.listOfItems.map((item, index) => <li className="to-do-ex" key={index} onDoubleClick={this.done}>{item}</li>)
-        var doneItems = this.state.listOfDone.map((item, index) => <li className="done-ex" key={index}>{item}</li>)
+        var listItems = this.state.listOfItems.map((item, index) => <li draggable className="to-do-ex" id={index} key={index} onDoubleClick={this.done}>{item}</li>)
+        var doneItems = this.state.listOfDone.map((item, index) => <li draggable className="done-ex" key={index}>{item}</li>)
         return (
             <div className="main">
                 <div className="to-do">
