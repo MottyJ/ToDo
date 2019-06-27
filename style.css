@@ -2,6 +2,9 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    color: #011627;
 }
 
 .container {
@@ -23,8 +26,9 @@ body {
     height: 100vh;
     box-sizing: border-box;
     display: flex;
-    justify-content: space-around;
-    /* align-items: center; */
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     background-color: #F6F7F8;
 }
 
@@ -32,7 +36,6 @@ body {
     width: 50vw;
     height: 44px;
     border-radius: 22px;
-    position: relative;
     border: 1px solid #FF3366;
     text-indent: 1em;
     font-size: 1em;
@@ -69,4 +72,32 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
     font-size: 1.5em;
     color: #F6F7F8;
     letter-spacing: 3;
+}
+
+.to-do {
+    width: 70vw;
+    height: 40vh;
+    background-color: #2EC4B6;
+}
+
+.done {
+    width: 70vw;
+    height: 40vh;
+    background-color: #FF3366;
+}
+
+.do-title {
+    color: #FF3366;
+}
+
+.done-title {
+    color: #2EC4B6;
+}
+
+.to-do-ex {
+    background-color: #FF3366;
+}
+
+.done-ex {
+    background-color: #2EC4B6;
 }
