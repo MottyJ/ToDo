@@ -35,6 +35,7 @@ class Main extends React.Component {
         }
         this.addItem = this.addItem.bind(this)
         this.checkForEnter = this.checkForEnter.bind(this)
+        this.done = this.done.bind(this)
     }
     addItem() {
         this.state.listOfItems.push(this.state.textInput)
@@ -49,12 +50,15 @@ class Main extends React.Component {
         }
     }
     done(e) {
-        this.state.listOfDone.push(e)
+        console.log(e.target.textContent)
+        this.state.listOfDone.push(e.target.textContent)
         this.setState({
-            listItems: this.state.listOfItems.splice(e.key)
+            listItems: this.state.listOfItems.splice(e.target.value)
         })
+        
     }
     render() {
+        console.log(this.state.listOfItems)
         var listItems = this.state.listOfItems.map((item, index) => <li className="to-do-ex" key={index} onDoubleClick={this.done}>{item}</li>)
         var doneItems = this.state.listOfDone.map((item, index) => <li className="done-ex" key={index}>{item}</li>)
         return (
