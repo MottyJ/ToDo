@@ -78,6 +78,8 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
     width: 70vw;
     height: 40vh;
     background-color: #2EC4B6;
+    overflow-y: scroll;
+    word-wrap: normal;
 }
 
 .done {
@@ -100,4 +102,15 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
 
 .done-ex {
     background-color: #2EC4B6;
+}
+
+.to-do-list, .done-list {
+    list-style: none;
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0;
 }
