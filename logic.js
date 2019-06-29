@@ -15,18 +15,15 @@ class App extends React.Component {
 class SideMenu extends React.Component {
     constructor(props) {
         super(props)
-        this.delete = this.delete.bind(this)
+
     }
-    delete(e){
-        console.log("hello")
-    }
+
     render() {
         return (
             <div className="side-menu">
                 <h1 className="red">do</h1>
                 <h1><span className="red">-</span><span className="green">-</span></h1>
                 <h1 className="green">ne</h1>
-                <div className="trash" onDragOver={(e)=>this.onDragOver(e, this.delete(e))}>Trash</div>
             </div>
         );
     }
@@ -43,12 +40,16 @@ class Main extends React.Component {
         this.addItem = this.addItem.bind(this)
         this.checkForEnter = this.checkForEnter.bind(this)
         this.done = this.done.bind(this)
+        this.undone = this.undone.bind(this)
+        this.deleteDo = this.deleteDo.bind(this)
+        // this.testy = this.testy.bind(this)
+        this.onDragOver = this.onDragOver.bind(this)
     }
     addItem() {
         this.state.listOfItems.push(this.state.textInput)
         this.setState({
-            textInput : "",
-            listOfItems : this.state.listOfItems
+            textInput: "",
+            listOfItems: this.state.listOfItems
         })
     }
     checkForEnter(e) {
@@ -62,12 +63,32 @@ class Main extends React.Component {
         this.setState({
             listItems: this.state.listOfItems.splice(e.target.id, 1)
         })
-        
     }
+    undone(e) {
+        console.log(e.target.id)
+        console.log(e.target.textContent)
+        this.state.listOfItems.push(e.target.textContent)
+        this.setState({
+            listItems: this.state.listOfDone.splice(e.target.id, 1)
+        })
+    }
+    deleteDo(e) {
+        e.preventDefault();
+        console.log(e.target)
+        this.setState({
+            listItems: this.state.listOfItems.splice(e.target.id, 1)
+        })
+    }
+    onDragOver(e) {
+	    e.preventDefault();
+	}
+    // testy(e) {
+    //     console.log(e.target)
+    // }
     render() {
         console.log(this.state.listOfItems)
         var listItems = this.state.listOfItems.map((item, index) => <li draggable className="to-do-ex" id={index} key={index} onDoubleClick={this.done}>{item}</li>)
-        var doneItems = this.state.listOfDone.map((item, index) => <li draggable className="done-ex" key={index}>{item}</li>)
+        var doneItems = this.state.listOfDone.map((item, index) => <li draggable className="done-ex" key={index} id={index} onDoubleClick={this.undone}>{item}</li>)
         return (
             <div className="main">
                 <div className="to-do">
@@ -76,9 +97,10 @@ class Main extends React.Component {
                         <li className="to-do-ex">take out the trash</li>
                         {listItems}
                     </ul>
+                    <div className="trash" onDragOver={this.onDragOver} onDrop={this.deleteDo}>Trash</div>
                 </div>
                 <div className="input-container">
-                    <input value={this.state.textInput} onChange={(e) => this.setState({textInput : e.target.value})} name="do" className="my-input" onKeyUp={this.checkForEnter} type="text" placeholder="take out the trash..."></input>
+                    <input value={this.state.textInput} onChange={(e) => this.setState({ textInput: e.target.value })} name="do" className="my-input" onKeyUp={this.checkForEnter} type="text" placeholder="take out the trash..."></input>
                 </div>
                 <div className="done">
                     <h1 className="done-title">ne</h1>

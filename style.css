@@ -4,7 +4,7 @@ body {
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
     text-align: center;
-    color: #011627;
+    color: #F6F7F8;
 }
 
 .container {
@@ -48,6 +48,7 @@ body {
     text-indent: 1em;
     font-size: 1em;
     margin: 5vh;
+    background: #F6F7F8;
 }
 
 .my-input::-webkit-input-placeholder {
@@ -66,21 +67,6 @@ input:focus::-webkit-input-placeholder { color:transparent; }
 input:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
 input:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
 input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
-
-/* .add {
-    width: 10vw;
-    height: 44px;
-    border-radius: 0 22px 22px 0;
-    position: absolute;
-    right: 10vw;
-    margin-top: 5vh;
-    background-color: #FF3366;
-    border: 1px solid #FF3366;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.5em;
-    color: #F6F7F8;
-    letter-spacing: 3;
-} */
 
 .to-do {
     width: 70vw;
@@ -128,4 +114,5 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
 
 .trash {
     background-color: white;
+    height: 10vh;
 }
