@@ -12,23 +12,27 @@ body {
     height: 100vh;
     box-sizing: border-box;
     display: flex;
+    flex-direction: column;
 }
 
 .side-menu {
-    height: 100vh;
-    width: 30vw;
+    height: 10vh;
+    width: 100vw;
     background-color: #011627;
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .main {
-    width: 70vw;
-    height: 100vh;
+    width: 100vw;
+    height: 90vh;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     background-color: #F6F7F8;
 }
 
@@ -47,7 +51,7 @@ body {
     border: 1px solid #FF3366;
     text-indent: 1em;
     font-size: 1em;
-    margin: 5vh;
+    padding: 1vh;
     background: #F6F7F8;
 }
 
@@ -69,8 +73,8 @@ input:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
 input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
 
 .to-do {
-    width: 70vw;
-    height: 40vh;
+    width: 50vw;
+    height: 80vh;
     background-color: #2EC4B6;
     overflow-y: scroll;
     word-wrap: normal;
@@ -78,8 +82,8 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
 }
 
 .done {
-    width: 70vw;
-    height: 40vh;
+    width: 50vw;
+    height: 80vh;
     background-color: #FF3366;
 }
 
@@ -108,11 +112,24 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
 }
 
 .to-do-list > li, .done-list > li {
-    margin-block-start: 0.5em;
-    margin-block-end: 0.5em;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    border: #011627 1px solid;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
 }
 
-.trash {
-    background-color: white;
-    height: 10vh;
+.logo {
+    padding: 0;
+    margin: 0;
+    font-size: 2em;
+}
+
+.dos {
+    display: flex;
+    user-select: none;
 }

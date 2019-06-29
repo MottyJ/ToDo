@@ -15,15 +15,13 @@ class App extends React.Component {
 class SideMenu extends React.Component {
     constructor(props) {
         super(props)
-
     }
-
     render() {
         return (
             <div className="side-menu">
-                <h1 className="red">do</h1>
-                <h1><span className="red">-</span><span className="green">-</span></h1>
-                <h1 className="green">ne</h1>
+                <span className="red logo">do</span>
+                <span className="logo"><span className="red">-</span><span className="green">-</span></span>
+                <span className="green logo">ne</span>
             </div>
         );
     }
@@ -42,8 +40,7 @@ class Main extends React.Component {
         this.done = this.done.bind(this)
         this.undone = this.undone.bind(this)
         this.deleteDo = this.deleteDo.bind(this)
-        // this.testy = this.testy.bind(this)
-        this.onDragOver = this.onDragOver.bind(this)
+        this.deleteDone = this.deleteDone.bind(this)
     }
     addItem() {
         this.state.listOfItems.push(this.state.textInput)
@@ -58,15 +55,12 @@ class Main extends React.Component {
         }
     }
     done(e) {
-        console.log(e.target.id)
         this.state.listOfDone.push(e.target.textContent)
         this.setState({
             listItems: this.state.listOfItems.splice(e.target.id, 1)
         })
     }
     undone(e) {
-        console.log(e.target.id)
-        console.log(e.target.textContent)
         this.state.listOfItems.push(e.target.textContent)
         this.setState({
             listItems: this.state.listOfDone.splice(e.target.id, 1)
@@ -74,47 +68,42 @@ class Main extends React.Component {
     }
     deleteDo(e) {
         e.preventDefault();
-        console.log(e.target)
         this.setState({
             listItems: this.state.listOfItems.splice(e.target.id, 1)
         })
     }
-    onDragOver(e) {
-	    e.preventDefault();
-	}
-    // testy(e) {
-    //     console.log(e.target)
-    // }
+    deleteDone(e) {
+        e.preventDefault();
+        this.setState({
+            listItems: this.state.listOfDone.splice(e.target.id, 1)
+        })
+    }
     render() {
-        console.log(this.state.listOfItems)
-        var listItems = this.state.listOfItems.map((item, index) => <li draggable className="to-do-ex" id={index} key={index} onDoubleClick={this.done}>{item}</li>)
-        var doneItems = this.state.listOfDone.map((item, index) => <li draggable className="done-ex" key={index} id={index} onDoubleClick={this.undone}>{item}</li>)
+        var listItems = this.state.listOfItems.map((item, index) => <li className="to-do-ex" id={index} key={index} onContextMenu={this.deleteDo} onDoubleClick={this.done}>{item}</li>)
+        var doneItems = this.state.listOfDone.map((item, index) => <li className="done-ex" key={index} id={index} onContextMenu={this.deleteDone} onDoubleClick={this.undone}>{item}</li>)
         return (
             <div className="main">
-                <div className="to-do">
-                    <h1 className="do-title">do</h1>
-                    <ul className="to-do-list">
-                        <li className="to-do-ex">take out the trash</li>
-                        {listItems}
-                    </ul>
-                    <div className="trash" onDragOver={this.onDragOver} onDrop={this.deleteDo}>Trash</div>
-                </div>
                 <div className="input-container">
                     <input value={this.state.textInput} onChange={(e) => this.setState({ textInput: e.target.value })} name="do" className="my-input" onKeyUp={this.checkForEnter} type="text" placeholder="take out the trash..."></input>
                 </div>
-                <div className="done">
-                    <h1 className="done-title">ne</h1>
-                    <ul className="done-list">
-                        <li className="done-ex">take out the dog</li>
-                        {doneItems}
-                    </ul>
+                <div className="dos">
+                    <div className="to-do">
+                        <h1 className="do-title">do</h1>
+                        <ul className="to-do-list">
+                            {listItems}
+                        </ul>
+                    </div>
+                    <div className="done">
+                        <h1 className="done-title">ne</h1>
+                        <ul className="done-list">
+                            {doneItems}
+                        </ul>
+                    </div>
                 </div>
             </div>
         );
     }
 }
-
-
 
 ReactDOM.render(
     <App />,
